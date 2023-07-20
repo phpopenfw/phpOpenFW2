@@ -45,7 +45,12 @@ class dt_sqlsrv extends dt_structure
             //---------------------------------------------------------------
             // Connection Parameters
             //---------------------------------------------------------------
-            $connectionInfo = array();
+            if ($this->conn_str !== false) {
+                parse_str($this->conn_str, $connectionInfo);
+            }
+            else {
+                $connectionInfo = array();
+            }
             if (!empty($this->user)) { $connectionInfo['UID'] = $this->user; }
             if (!empty($this->pass)) { $connectionInfo['PWD'] = $this->pass; }
             if (!empty($this->source)) { $connectionInfo['Database'] = $this->source; }
